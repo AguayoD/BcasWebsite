@@ -32,6 +32,45 @@ interface HeroSettings {
   };
 }
 
+interface AboutSection {
+  id: number;
+  title: string;
+  content: string;
+  imageUrl?: string;
+  imagePosition?: {
+    x: number;
+    y: number;
+    scale: number;
+  };
+  reverseLayout?: boolean;
+}
+
+interface TeamMember {
+  id: number;
+  name: string;
+  position: string;
+  bio: string;
+  imageUrl?: string;
+}
+
+interface ValueItem {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface AboutHeroSettings {
+  imageUrl: string;
+  title: string;
+  subtitle: string;
+  imagePosition: {
+    x: number;
+    y: number;
+    scale: number;
+  };
+}
+
 const AdminDashboard: React.FC = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [events, setEvents] = useState<EventItem[]>([]);
@@ -45,6 +84,45 @@ const AdminDashboard: React.FC = () => {
       scale: 1.0
     }
   });
+  const [aboutHero, setAboutHero] = useState<AboutHeroSettings>({
+    imageUrl: '',
+    title: 'About Us',
+    subtitle: '',
+    imagePosition: {
+      x: 50,
+      y: 50,
+      scale: 1.0
+    }
+  });
+  const [aboutSections, setAboutSections] = useState<AboutSection[]>([
+    {
+      id: 1,
+      title: 'Our Story',
+      content: 'Add your story here...',
+      reverseLayout: false
+    }
+  ]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [values, setValues] = useState<ValueItem[]>([
+    {
+      id: 1,
+      title: 'Excellence',
+      description: 'Striving for the highest standards in everything we do.',
+      icon: ''
+    },
+    {
+      id: 2,
+      title: 'Integrity',
+      description: 'Acting with honesty and strong moral principles.',
+      icon: ''
+    },
+    {
+      id: 3,
+      title: 'Innovation',
+      description: 'Embracing creativity and forward-thinking approaches.',
+      icon: ''
+    }
+  ]);
   const [activeTab, setActiveTab] = useState('hero');
   const [crop, setCrop] = useState<Crop>({
     unit: '%',
@@ -60,6 +138,10 @@ const AdminDashboard: React.FC = () => {
     const savedNews = localStorage.getItem('schoolNews');
     const savedEvents = localStorage.getItem('schoolEvents');
     const savedHero = localStorage.getItem('schoolHero');
+    const savedAboutHero = localStorage.getItem('schoolAboutHero');
+    const savedAboutSections = localStorage.getItem('schoolAboutSections');
+    const savedTeamMembers = localStorage.getItem('schoolTeamMembers');
+    const savedValues = localStorage.getItem('schoolAboutValues');
     
     if (savedNews) setNews(JSON.parse(savedNews));
     if (savedEvents) setEvents(JSON.parse(savedEvents));
@@ -77,13 +159,27 @@ const AdminDashboard: React.FC = () => {
         y: saved.imagePosition?.y || 0
       });
     }
+    if (savedAboutHero) {
+      const saved = JSON.parse(savedAboutHero);
+      if (!saved.imagePosition) {
+        saved.imagePosition = { x: 50, y: 50, scale: 1.0 };
+      }
+      setAboutHero(saved);
+    }
+    if (savedAboutSections) setAboutSections(JSON.parse(savedAboutSections));
+    if (savedTeamMembers) setTeamMembers(JSON.parse(savedTeamMembers));
+    if (savedValues) setValues(JSON.parse(savedValues));
   }, []);
 
   useEffect(() => {
     localStorage.setItem('schoolNews', JSON.stringify(news));
     localStorage.setItem('schoolEvents', JSON.stringify(events));
     localStorage.setItem('schoolHero', JSON.stringify(heroSettings));
-  }, [news, events, heroSettings]);
+    localStorage.setItem('schoolAboutHero', JSON.stringify(aboutHero));
+    localStorage.setItem('schoolAboutSections', JSON.stringify(aboutSections));
+    localStorage.setItem('schoolTeamMembers', JSON.stringify(teamMembers));
+    localStorage.setItem('schoolAboutValues', JSON.stringify(values));
+  }, [news, events, heroSettings, aboutHero, aboutSections, teamMembers, values]);
 
   const addNews = () => {
     const newNews: NewsItem = {
@@ -106,12 +202,54 @@ const AdminDashboard: React.FC = () => {
     setEvents([...events, newEvent]);
   };
 
+  const addAboutSection = () => {
+    const newSection: AboutSection = {
+      id: Date.now(),
+      title: `New Section ${aboutSections.length + 1}`,
+      content: 'Add section content here...',
+      reverseLayout: aboutSections.length % 2 === 1
+    };
+    setAboutSections([...aboutSections, newSection]);
+  };
+
+  const addTeamMember = () => {
+    const newMember: TeamMember = {
+      id: Date.now(),
+      name: `Team Member ${teamMembers.length + 1}`,
+      position: 'Position',
+      bio: 'Team member bio here...'
+    };
+    setTeamMembers([...teamMembers, newMember]);
+  };
+
+  const addValue = () => {
+    const newValue: ValueItem = {
+      id: Date.now(),
+      title: `New Value ${values.length + 1}`,
+      description: 'Value description here...',
+      icon: '🌟'
+    };
+    setValues([...values, newValue]);
+  };
+
   const deleteNews = (id: number) => {
     setNews(news.filter(item => item.id !== id));
   };
 
   const deleteEvent = (id: number) => {
     setEvents(events.filter(item => item.id !== id));
+  };
+
+  const deleteAboutSection = (id: number) => {
+    setAboutSections(aboutSections.filter(section => section.id !== id));
+  };
+
+  const deleteTeamMember = (id: number) => {
+    setTeamMembers(teamMembers.filter(member => member.id !== id));
+  };
+
+  const deleteValue = (id: number) => {
+    setValues(values.filter(value => value.id !== id));
   };
 
   const updateItem = (type: 'news' | 'events', id: number, field: string, value: string) => {
@@ -126,7 +264,25 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const handleImageUpload = (type: 'news' | 'events' | 'hero', id?: number, imageUrl?: string) => {
+  const updateAboutSection = (id: number, field: string, value: any) => {
+    setAboutSections(aboutSections.map(section => 
+      section.id === id ? { ...section, [field]: value } : section
+    ));
+  };
+
+  const updateTeamMember = (id: number, field: string, value: string) => {
+    setTeamMembers(teamMembers.map(member => 
+      member.id === id ? { ...member, [field]: value } : member
+    ));
+  };
+
+  const updateValue = (id: number, field: string, value: string) => {
+    setValues(values.map(item => 
+      item.id === id ? { ...item, [field]: value } : item
+    ));
+  };
+
+  const handleImageUpload = (type: 'news' | 'events' | 'hero' | 'aboutHero' | 'aboutSection' | 'teamMember', id?: number, imageUrl?: string) => {
     if (type === 'news' && id !== undefined) {
       setNews(news.map(item => 
         item.id === id ? { ...item, imageUrl: imageUrl || '' } : item
@@ -148,6 +304,20 @@ const AdminDashboard: React.FC = () => {
         x: 0,
         y: 0
       });
+    } else if (type === 'aboutHero') {
+      setAboutHero({ 
+        ...aboutHero, 
+        imageUrl: imageUrl || '',
+        imagePosition: { x: 50, y: 50, scale: 1.0 }
+      });
+    } else if (type === 'aboutSection' && id !== undefined) {
+      setAboutSections(aboutSections.map(section => 
+        section.id === id ? { ...section, imageUrl: imageUrl || '' } : section
+      ));
+    } else if (type === 'teamMember' && id !== undefined) {
+      setTeamMembers(teamMembers.map(member => 
+        member.id === id ? { ...member, imageUrl: imageUrl || '' } : member
+      ));
     }
   };
 
@@ -217,7 +387,7 @@ const AdminDashboard: React.FC = () => {
           className={`tab-button ${activeTab === 'hero' ? 'active' : ''}`}
           onClick={() => setActiveTab('hero')}
         >
-          Hero Section
+          Homepage Hero
         </button>
         <button 
           className={`tab-button ${activeTab === 'news' ? 'active' : ''}`}
@@ -230,6 +400,12 @@ const AdminDashboard: React.FC = () => {
           onClick={() => setActiveTab('events')}
         >
           Manage Events
+        </button>
+        <button 
+          className={`tab-button ${activeTab === 'about' ? 'active' : ''}`}
+          onClick={() => setActiveTab('about')}
+        >
+          Manage About Us
         </button>
       </div>
 
@@ -380,7 +556,7 @@ const AdminDashboard: React.FC = () => {
                           className="position-button"
                           onClick={togglePositionEditor}
                         >
-                          ✏️ Adjust Image Position & Zoom
+                           Adjust Image Position & Zoom
                         </button>
                       </>
                     )}
@@ -522,7 +698,7 @@ const AdminDashboard: React.FC = () => {
               ))}
             </div>
           </div>
-        ) : (
+        ) : activeTab === 'events' ? (
           <div className="events-management">
             <div className="section-header">
               <h2>Events Management</h2>
@@ -573,6 +749,214 @@ const AdminDashboard: React.FC = () => {
                     onClick={() => deleteEvent(item.id)}
                   >
                     Delete
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="about-management">
+            <div className="section-header">
+              <h2>About Us Management</h2>
+            </div>
+
+            {/* About Us Hero Section */}
+            <div className="editable-item">
+              <h3>About Us Hero Section</h3>
+              <input
+                type="text"
+                value={aboutHero.title}
+                onChange={(e) => setAboutHero({ ...aboutHero, title: e.target.value })}
+                className="edit-input"
+                placeholder="About Us Title"
+              />
+              
+              <input
+                type="text"
+                value={aboutHero.subtitle}
+                onChange={(e) => setAboutHero({ ...aboutHero, subtitle: e.target.value })}
+                className="edit-input"
+                placeholder="About Us Subtitle"
+              />
+              
+              <div className="image-upload-section">
+                <label>Hero Background Image</label>
+                <ImageUploader
+                  onImageUpload={(imageUrl: string) => handleImageUpload('aboutHero', undefined, imageUrl)}
+                  existingImage={aboutHero.imageUrl}
+                />
+                {aboutHero.imageUrl && (
+                  <div style={{ marginTop: '15px' }}>
+                    <div className="preview-container">
+                      <img 
+                        src={aboutHero.imageUrl} 
+                        alt="About Hero Preview" 
+                        className="hero-preview"
+                        style={{
+                          objectPosition: `${aboutHero.imagePosition.x}% ${aboutHero.imagePosition.y}%`,
+                          objectFit: 'cover',
+                          transform: `scale(${aboutHero.imagePosition.scale})`
+                        }}
+                      />
+                    </div>
+                    <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+                      <button 
+                        className="delete-button"
+                        onClick={() => setAboutHero({ ...aboutHero, imageUrl: '' })}
+                      >
+                        Remove Image
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* About Sections */}
+            <div className="section-header" style={{ marginTop: '40px' }}>
+              <h3>About Sections</h3>
+              <button className="add-button" onClick={addAboutSection}>+ Add Section</button>
+            </div>
+            
+            <div className="items-list">
+              {aboutSections.map(section => (
+                <div key={section.id} className="editable-item">
+                  <input
+                    type="text"
+                    value={section.title}
+                    onChange={(e) => updateAboutSection(section.id, 'title', e.target.value)}
+                    className="edit-input"
+                    placeholder="Section Title"
+                  />
+                  <textarea
+                    value={section.content}
+                    onChange={(e) => updateAboutSection(section.id, 'content', e.target.value)}
+                    className="edit-textarea"
+                    placeholder="Section Content"
+                  />
+                  
+                  <div className="image-upload-section">
+                    <label>Section Image</label>
+                    <ImageUploader
+                      onImageUpload={(imageUrl: string) => handleImageUpload('aboutSection', section.id, imageUrl)}
+                      existingImage={section.imageUrl}
+                    />
+                  </div>
+                  
+                  <div style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <input
+                        type="checkbox"
+                        checked={section.reverseLayout || false}
+                        onChange={(e) => updateAboutSection(section.id, 'reverseLayout', e.target.checked)}
+                      />
+                      Reverse Layout (Image on Right)
+                    </label>
+                  </div>
+                  
+                  <button 
+                    className="delete-button"
+                    onClick={() => deleteAboutSection(section.id)}
+                    style={{ marginTop: '15px' }}
+                  >
+                    Delete Section
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Team Members */}
+            <div className="section-header" style={{ marginTop: '40px' }}>
+              <h3>Team Members</h3>
+              <button className="add-button" onClick={addTeamMember}>+ Add Team Member</button>
+            </div>
+            
+            <div className="items-list">
+              {teamMembers.map(member => (
+                <div key={member.id} className="editable-item">
+                  <div style={{ display: 'flex', gap: '15px', alignItems: 'flex-start' }}>
+                    <div style={{ flex: 1 }}>
+                      <input
+                        type="text"
+                        value={member.name}
+                        onChange={(e) => updateTeamMember(member.id, 'name', e.target.value)}
+                        className="edit-input"
+                        placeholder="Team Member Name"
+                      />
+                      <input
+                        type="text"
+                        value={member.position}
+                        onChange={(e) => updateTeamMember(member.id, 'position', e.target.value)}
+                        className="edit-input"
+                        placeholder="Position"
+                      />
+                      <textarea
+                        value={member.bio}
+                        onChange={(e) => updateTeamMember(member.id, 'bio', e.target.value)}
+                        className="edit-textarea"
+                        placeholder="Bio"
+                        style={{ minHeight: '80px' }}
+                      />
+                    </div>
+                    <div style={{ width: '150px' }}>
+                      <div className="image-upload-section">
+                        <label>Profile Photo</label>
+                        <ImageUploader
+                          onImageUpload={(imageUrl: string) => handleImageUpload('teamMember', member.id, imageUrl)}
+                          existingImage={member.imageUrl}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <button 
+                    className="delete-button"
+                    onClick={() => deleteTeamMember(member.id)}
+                    style={{ marginTop: '15px' }}
+                  >
+                    Delete Team Member
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Values */}
+            <div className="section-header" style={{ marginTop: '40px' }}>
+              <h3>Core Values</h3>
+              <button className="add-button" onClick={addValue}>+ Add Value</button>
+            </div>
+            
+            <div className="items-list">
+              {values.map(value => (
+                <div key={value.id} className="editable-item">
+                  <input
+                    type="text"
+                    value={value.title}
+                    onChange={(e) => updateValue(value.id, 'title', e.target.value)}
+                    className="edit-input"
+                    placeholder="Value Title"
+                  />
+                  <textarea
+                    value={value.description}
+                    onChange={(e) => updateValue(value.id, 'description', e.target.value)}
+                    className="edit-textarea"
+                    placeholder="Value Description"
+                    style={{ minHeight: '80px' }}
+                  />
+                  <input
+                    type="text"
+                    value={value.icon}
+                    onChange={(e) => updateValue(value.id, 'icon', e.target.value)}
+                    className="edit-input"
+                    placeholder="Emoji / Icon (Optional)"
+                  />
+                  
+                  <button 
+                    className="delete-button"
+                    onClick={() => deleteValue(value.id)}
+                    style={{ marginTop: '15px' }}
+                  >
+                    Delete Value
                   </button>
                 </div>
               ))}
