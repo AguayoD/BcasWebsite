@@ -157,7 +157,7 @@ const MainLayout: React.FC = () => {
           <div className="footer-section">
             <h3>Contact Us</h3>
             <p> (123) 456-7890</p>
-            <p> info@bcas.edu</p>
+            <p> bcas@email.com</p>
             <p> 123 School Street, City, Country</p>
           </div>
           <div className="footer-section">

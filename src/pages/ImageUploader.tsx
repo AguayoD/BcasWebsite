@@ -10,16 +10,14 @@ interface ImageUploaderProps {
 const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, existingImage }) => {
   const [preview, setPreview] = useState<string>(existingImage || '');
 
-  //Convert to Dynamic/Databased after done with whole design layout
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreview(imageUrl);
-      onImageUpload(imageUrl);
       const reader = new FileReader();
       reader.onloadend = () => {
-        onImageUpload(reader.result as string);
+        const base64Image = reader.result as string;
+        setPreview(base64Image);
+        onImageUpload(base64Image);
       };
       reader.readAsDataURL(file);
     }
@@ -30,7 +28,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload, existingIm
     accept: {
       'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp']
     },
-    maxFiles: 1
+    maxFiles: 1,
+    maxSize: 5242880
   });
 
   const handleRemoveImage = () => {

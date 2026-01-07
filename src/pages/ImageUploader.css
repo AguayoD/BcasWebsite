@@ -5,10 +5,20 @@
 .dropzone {
   border: 2px dashed #cccccc;
   border-radius: 10px;
-  padding: 30px;
+  padding: 40px;
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s;
+  background-color: #f9f9f9;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone:hover {
+  border-color: #4CAF50;
+  background-color: rgba(76, 175, 80, 0.05);
 }
 
 .dropzone.active {
@@ -22,29 +32,36 @@
 
 .upload-icon {
   font-size: 48px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  opacity: 0.7;
 }
 
 .upload-placeholder p {
   margin: 10px 0;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .upload-placeholder small {
   color: #888;
   font-size: 12px;
+  display: block;
+  margin-top: 10px;
 }
 
 .image-preview-container {
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
 }
 
 .image-preview {
   width: 100%;
   max-height: 300px;
   object-fit: contain;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  display: block;
+  background: #f5f5f5;
 }
 
 .remove-image-btn {
@@ -54,12 +71,27 @@
   background: rgba(244, 67, 54, 0.9);
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .remove-image-btn:hover {
   background: #f44336;
+}
+
+.image-preview-container::before {
+  content: 'Preview';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1;
 }
