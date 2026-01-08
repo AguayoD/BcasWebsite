@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import MainLayout from './layout/MainLayout';
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
-import Admissions from './pages/Admissions';
 import History from './pages/History';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
+import AdmissionRequirements from './pages/AdmissionRequirements';
 
 // Protected Route
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -29,8 +29,12 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutUs />} />
-          <Route path="admissions" element={<Admissions />} />
+          
+          {/* Admissions Routes */}
+          <Route path="admission-requirements" element={<AdmissionRequirements />} />
+          
           <Route path="history" element={<History />} />
+
         </Route>
         
         {/* Admin Routes */}

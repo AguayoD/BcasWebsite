@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
       };
     } else {
       return {
-        background: 'linear-gradient(135deg, #2c5aa0 0%, #1d3d6f 100%)'
+        background: 'linear-gradient(135deg, #2e8b57 0%, #2e8b57 100%)'
       };
     }
   };

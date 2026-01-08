@@ -1,4 +1,3 @@
-// MainLayout.tsx
 import React from 'react';
 import { Layout, Menu, Button } from 'antd';
 import { 
@@ -26,7 +25,7 @@ const MainLayout: React.FC = () => {
     const path = location.pathname;
     if (path === '/') return 'home';
     if (path === '/about') return 'about';
-    if (path === '/admissions' || path.startsWith('/admissions/')) return 'admissions';
+    if (path === '/admissions' || path.startsWith('/admission/')) return 'admissions';
     if (path === '/history') return 'history';
     if (path === '/careers') return 'careers';
     if (path === '/opportunities') return 'opportunities';
@@ -36,7 +35,7 @@ const MainLayout: React.FC = () => {
   // Get selected submenu key
   const getSelectedSubKey = () => {
     const path = location.pathname;
-    if (path === '/admissions/requirements') return 'admissions.requirements';
+    if (path === '/admission-requirements') return 'admissions.requirements';
     if (path === '/admissions/programs') return 'admissions.programs';
     if (path === '/admissions/scholarships') return 'admissions.scholarships';
     if (path === '/admissions/apply') return 'admissions.apply';
@@ -55,7 +54,7 @@ const MainLayout: React.FC = () => {
         navigate('/admissions');
         break;
       case 'admissions.requirements':
-        navigate('/admissions/requirements');
+        navigate('/admission-requirements');
         break;
       case 'admissions.programs':
         navigate('/admissions/programs');

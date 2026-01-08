@@ -94,7 +94,7 @@
 
 /* Dropdown arrow color */
 .main-menu .ant-menu-submenu-arrow {
-  display: none !important; /* Hide Ant Design's default arrow */
+  display: none !important;
 }
 
 /* Dropdown menu background and items */

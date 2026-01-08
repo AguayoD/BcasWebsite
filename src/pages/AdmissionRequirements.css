@@ -1,0 +1,269 @@
+/* Page Container */
+.admissions-requirements-page {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.requirements-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 25px;
+  background: linear-gradient(135deg, #2e8b57 0%, #2e8b57 100%);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(17, 116, 5, 0.2);
+}
+
+.page-title {
+  color: #FFBC0D !important;
+  margin-bottom: 15px !important;
+  font-weight: 700 !important;
+  font-size: 2.5rem !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 1.1rem !important;
+  max-width: 800px;
+  margin: 0 auto !important;
+  line-height: 1.6 !important;
+}
+
+/* Main Card */
+.requirements-card {
+  border-radius: 12px !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  overflow: hidden;
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #2e8b57;
+}
+
+.section-title {
+  color: #2e8b57 !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+  font-size: 1.8rem !important;
+}
+
+.section-icon {
+  color: #FFBC0D;
+  font-size: 28px;
+  background: #2e8b57;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.section-description {
+  color: #555 !important;
+  font-size: 1.1rem !important;
+  margin-top: 12px !important;
+  margin-left: 50px !important;
+  font-style: italic;
+}
+
+/* Requirements Grid */
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.requirement-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #e8e8e8;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.requirement-item:hover {
+  background: #f9f9f9;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: #117405;
+}
+
+.requirement-item.important-requirement {
+  border-left: 5px solid #117405;
+  background: linear-gradient(to right, #f6ffed, #ffffff);
+}
+
+.requirement-icon {
+  font-size: 28px;
+  color: #2e8b57;
+  margin-right: 20px;
+  padding: 12px;
+  background: #f0f9e8;
+  border-radius: 10px;
+  min-width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.requirement-content {
+  flex: 1;
+}
+
+.requirement-title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.requirement-title {
+  color: #117405 !important;
+  margin-bottom: 0 !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+}
+
+.important-tag {
+  font-weight: bold !important;
+  border-radius: 4px !important;
+  padding: 2px 8px !important;
+  font-size: 0.75rem !important;
+}
+
+.requirement-description {
+  color: #555 !important;
+  line-height: 1.6 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Submission Guidelines */
+.submission-guidelines {
+  margin: 40px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #2e8b5642 100%);
+  border-radius: 10px;
+  border-left: 5px solid #2e8b57;
+}
+
+.guidelines-title {
+  color: #2e8b57 !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+}
+
+.guidelines-icon {
+  font-size: 24px;
+  color: #2e8b57;
+}
+
+.guidelines-list {
+  background: transparent !important;
+}
+
+.guidelines-list .ant-list-item {
+  border: none !important;
+  padding: 12px 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+.guidelines-list .ant-list-item:last-child {
+  padding-bottom: 0 !important;
+}
+
+/* Compliance Alert */
+.compliance-alert {
+  margin-top: 30px !important;
+  border-radius: 8px !important;
+  border: 2px solid #52c41a !important;
+  background-color: #f6ffed !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .requirements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .admissions-requirements-page {
+    padding: 15px;
+  }
+  
+  .requirements-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .requirements-header {
+    padding: 20px 15px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .page-subtitle {
+    font-size: 1rem !important;
+  }
+  
+  .section-title {
+    font-size: 1.4rem !important;
+  }
+  
+  .requirement-icon {
+    min-width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  
+  .requirement-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .categories-tags {
+    justify-content: center;
+  }
+  
+  .category-tag {
+    font-size: 0.85rem !important;
+    padding: 6px 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .requirement-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .requirement-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  
+  .section-description {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+}
