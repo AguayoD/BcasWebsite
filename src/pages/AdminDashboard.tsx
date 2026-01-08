@@ -589,65 +589,6 @@ const AdminDashboard: React.FC = () => {
               </div>
             </div>
             
-            <div className="preview-section" style={{ marginTop: '30px' }}>
-              <h3>Live Preview</h3>
-              <div className="hero-preview-container" style={{
-                backgroundImage: heroSettings.imageUrl 
-                  ? `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${heroSettings.imageUrl})`
-                  : 'linear-gradient(135deg, #2c5aa0 0%, #1d3d6f 100%)',
-                backgroundSize: heroSettings.imageUrl ? `${heroSettings.imagePosition.scale * 100}%` : 'cover',
-                backgroundPosition: heroSettings.imageUrl 
-                  ? `${heroSettings.imagePosition.x}% ${heroSettings.imagePosition.y}%` 
-                  : 'center',
-                backgroundRepeat: 'no-repeat',
-                color: 'white',
-                height: '400px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                borderRadius: '10px',
-                marginTop: '10px',
-                padding: '20px',
-                overflow: 'hidden'
-              }}>
-                <div>
-                  <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-                    {heroSettings.title}
-                  </h2>
-                  <p style={{ fontSize: '1.2rem', marginBottom: '2rem', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-                    {heroSettings.subtitle}
-                  </p>
-                  <button style={{
-                    backgroundColor: '#2c5aa0',
-                    color: 'white',
-                    border: 'none',
-                    padding: '15px 30px',
-                    fontSize: '1.2rem',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 6px rgba(0,0,0,0.2)',
-                    transition: 'all 0.3s'
-                  }}>
-                    Learn More
-                  </button>
-                </div>
-              </div>
-              {heroSettings.imageUrl && (
-                <div style={{ 
-                  marginTop: '10px', 
-                  fontSize: '14px', 
-                  color: '#666',
-                  textAlign: 'center',
-                  backgroundColor: '#f5f5f5',
-                  padding: '10px',
-                  borderRadius: '5px'
-                }}>
-                  📍 Current position: {heroSettings.imagePosition.x}% horizontal • {heroSettings.imagePosition.y}% vertical • 
-                  🔍 Zoom: {(heroSettings.imagePosition.scale * 100).toFixed(0)}%
-                </div>
-              )}
-            </div>
           </div>
         ) : activeTab === 'news' ? (
           <div className="news-management">

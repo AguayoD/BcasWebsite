@@ -38,9 +38,10 @@
   background: transparent !important;
 }
 
+/* Regular menu items */
 .main-menu .ant-menu-item {
   font-weight: 500;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .main-menu .ant-menu-item:hover {
@@ -50,6 +51,79 @@
 .main-menu .ant-menu-item-selected {
   color: #ffffff !important;
   border-bottom: 2px solid #1890ff !important;
+}
+
+/* SubMenu title styling */
+.submenu-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  margin-left: 4px;
+  transition: transform 0.3s;
+  color: #ffffff;
+}
+
+/* When submenu is open, rotate the arrow */
+.main-menu .ant-menu-submenu-open .dropdown-arrow {
+  transform: rotate(180deg);
+  color: #FFBC0D;
+}
+
+/* SubMenu (Dropdown) Styles - Match with regular items */
+.main-menu .ant-menu-submenu-title {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.main-menu .ant-menu-submenu:hover > .ant-menu-submenu-title {
+  color: #FFBC0D !important;
+}
+
+.main-menu .ant-menu-submenu:hover .dropdown-arrow {
+  color: #FFBC0D !important;
+}
+
+.main-menu .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: #ffffff !important;
+  border-bottom: 2px solid #1890ff !important;
+}
+
+/* Dropdown arrow color */
+.main-menu .ant-menu-submenu-arrow {
+  display: none !important; /* Hide Ant Design's default arrow */
+}
+
+/* Dropdown menu background and items */
+.main-menu .ant-menu-submenu-popup {
+  background: #117405 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+.main-menu .ant-menu-submenu-popup .ant-menu-item {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  background: #117405 !important;
+  margin: 0 !important;
+}
+
+.main-menu .ant-menu-submenu-popup .ant-menu-item:hover {
+  color: #FFBC0D !important;
+  background: rgba(255, 188, 13, 0.1) !important;
+}
+
+.main-menu .ant-menu-submenu-popup .ant-menu-item-selected {
+  color: #ffffff !important;
+  background: #1890ff !important;
+}
+
+.main-menu .ant-menu-submenu-popup .ant-menu-item-selected:hover {
+  color: #ffffff !important;
+  background: #1890ff !important;
 }
 
 .admin-section {

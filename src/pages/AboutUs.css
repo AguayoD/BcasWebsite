@@ -2,11 +2,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.hero-section {
+.aboutus-container .hero-section {
   background-size: cover;
   background-position: center;
   color: white;
-  height: 60vh;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,7 @@
   transition: background-position 0.3s ease, background-size 0.3s ease;
 }
 
-.hero-section::before {
+.aboutus-container .hero-section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -26,28 +26,28 @@
   z-index: 1;
 }
 
-.hero-content {
+.aboutus-container .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
   padding: 20px;
 }
 
-.hero-content h1 {
+.aboutus-container .hero-content h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 0.8s ease;
 }
 
-.hero-content p {
+.aboutus-container .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 1s ease;
 }
 
-.cta-button {
+.aboutus-container .cta-button {
   background-color: #2c5aa0;
   color: white;
   border: none;
@@ -59,7 +59,7 @@
   animation: fadeInUp 1.2s ease;
 }
 
-.cta-button:hover {
+.aboutus-container .cta-button:hover {
   background-color: #1d3d6f;
   transform: translateY(-2px);
 }
@@ -75,13 +75,13 @@
   }
 }
 
-.content-section {
+.aboutus-container .content-section {
   padding: 80px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.content-section h2 {
+.aboutus-container .content-section h2 {
   text-align: center;
   margin-bottom: 50px;
   color: #2c5aa0;
@@ -89,7 +89,7 @@
   position: relative;
 }
 
-.content-section h2::after {
+.aboutus-container .content-section h2::after {
   content: '';
   display: block;
   width: 80px;
@@ -99,7 +99,7 @@
   border-radius: 2px;
 }
 
-.no-content-message {
+.aboutus-container .no-content-message {
   text-align: center;
   padding: 60px 40px;
   background: #f8f9fa;
@@ -109,14 +109,14 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.about-sections-container,
-.team-grid {
+.aboutus-container .about-sections-container,
+.aboutus-container .team-grid {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
 
-.about-section-item {
+.aboutus-container .about-section-item {
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -124,22 +124,22 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.about-section-item:hover {
+.aboutus-container .about-section-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.section-content {
+.aboutus-container .section-content {
   display: flex;
   align-items: center;
   min-height: 300px;
 }
 
-.reverse-layout .section-content {
+.aboutus-container .reverse-layout .section-content {
   flex-direction: row-reverse;
 }
 
-.section-image {
+.aboutus-container .section-image {
   flex: 1;
   min-height: 300px;
   background: #f5f5f5;
@@ -149,18 +149,18 @@
   overflow: hidden;
 }
 
-.section-image img {
+.aboutus-container .section-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s;
 }
 
-.about-section-item:hover .section-image img {
+.aboutus-container .about-section-item:hover .section-image img {
   transform: scale(1.05);
 }
 
-.no-image-placeholder {
+.aboutus-container .no-image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -171,32 +171,32 @@
   background: #f0f0f0;
 }
 
-.section-text {
+.aboutus-container .section-text {
   flex: 1;
   padding: 40px;
 }
 
-.section-text h3 {
+.aboutus-container .section-text h3 {
   color: #2c5aa0;
   margin-bottom: 20px;
   font-size: 1.8rem;
   line-height: 1.3;
 }
 
-.section-text p {
+.aboutus-container .section-text p {
   color: #333;
   line-height: 1.6;
   margin-top: 10px;
   font-size: 1.1rem;
 }
 
-.team-grid {
+.aboutus-container .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
-.team-member {
+.aboutus-container .team-member {
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -204,69 +204,69 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.team-member:hover {
+.aboutus-container .team-member:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.member-image {
+.aboutus-container .member-image {
   width: 100%;
   height: 250px;
   background: #f5f5f5;
   overflow: hidden;
 }
 
-.member-image img {
+.aboutus-container .member-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s;
 }
 
-.team-member:hover .member-image img {
+.aboutus-container .team-member:hover .member-image img {
   transform: scale(1.05);
 }
 
-.member-info {
+.aboutus-container .member-info {
   padding: 25px;
 }
 
-.member-info h3 {
+.aboutus-container .member-info h3 {
   color: #2c5aa0;
   margin-bottom: 10px;
   font-size: 1.5rem;
   line-height: 1.3;
 }
 
-.member-position {
+.aboutus-container .member-position {
   color: #666;
   font-size: 1rem;
   margin-bottom: 15px;
   font-weight: 500;
 }
 
-.member-info p {
+.aboutus-container .member-info p {
   color: #333;
   line-height: 1.6;
   margin-top: 10px;
   font-size: 1rem;
 }
 
-.values-section {
+.aboutus-container .values-section {
   padding: 60px 20px;
   background: #f8f9fa;
   margin-top: 40px;
   border-radius: 10px;
 }
 
-.values-grid {
+.aboutus-container .values-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
   margin-top: 40px;
 }
 
-.value-item {
+.aboutus-container .value-item {
   background: white;
   padding: 30px;
   border-radius: 10px;
@@ -275,90 +275,90 @@
   transition: transform 0.3s;
 }
 
-.value-item:hover {
+.aboutus-container .value-item:hover {
   transform: translateY(-5px);
 }
 
-.value-icon {
+.aboutus-container .value-icon {
   font-size: 2.5rem;
   margin-bottom: 20px;
   color: #2c5aa0;
 }
 
-.value-item h4 {
+.aboutus-container .value-item h4 {
   color: #2c5aa0;
   margin-bottom: 15px;
   font-size: 1.3rem;
 }
 
-.value-item p {
+.aboutus-container .value-item p {
   color: #666;
   line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .hero-content h1 {
+  .aboutus-container .hero-content h1 {
     font-size: 2.5rem;
   }
   
-  .hero-content p {
+  .aboutus-container .hero-content p {
     font-size: 1.2rem;
   }
   
-  .content-section h2 {
+  .aboutus-container .content-section h2 {
     font-size: 2rem;
   }
   
-  .section-content {
+  .aboutus-container .section-content {
     flex-direction: column !important;
     min-height: auto;
   }
   
-  .section-image {
+  .aboutus-container .section-image {
     min-height: 200px;
     width: 100%;
   }
   
-  .section-text {
+  .aboutus-container .section-text {
     padding: 30px;
   }
   
-  .team-grid {
+  .aboutus-container .team-grid {
     grid-template-columns: 1fr;
   }
   
-  .hero-section {
+  .aboutus-container .hero-section {
     height: 50vh;
   }
   
-  .content-section {
+  .aboutus-container .content-section {
     padding: 40px 15px;
   }
   
-  .values-grid {
+  .aboutus-container .values-grid {
     grid-template-columns: 1fr;
   }
   
-  .cta-button {
+  .aboutus-container .cta-button {
     padding: 12px 24px;
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-content h1 {
+  .aboutus-container .hero-content h1 {
     font-size: 2rem;
   }
   
-  .hero-content p {
+  .aboutus-container .hero-content p {
     font-size: 1rem;
   }
   
-  .section-text {
+  .aboutus-container .section-text {
     padding: 20px;
   }
   
-  .member-info {
+  .aboutus-container .member-info {
     padding: 20px;
   }
 }

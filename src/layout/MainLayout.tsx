@@ -5,12 +5,14 @@ import {
   HomeOutlined, 
   HistoryOutlined,
   UserOutlined,
-  LoginOutlined
+  LoginOutlined,
+  DownOutlined
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './MainLayout.css';
 
 const { Header, Content } = Layout;
+const { SubMenu } = Menu;
 
 const MainLayout: React.FC = () => {
   const navigate = useNavigate();
@@ -24,8 +26,20 @@ const MainLayout: React.FC = () => {
     const path = location.pathname;
     if (path === '/') return 'home';
     if (path === '/about') return 'about';
-    if (path === '/admissions') return 'admissions';
+    if (path === '/admissions' || path.startsWith('/admissions/')) return 'admissions';
     if (path === '/history') return 'history';
+    if (path === '/careers') return 'careers';
+    if (path === '/opportunities') return 'opportunities';
+    return '';
+  };
+
+  // Get selected submenu key
+  const getSelectedSubKey = () => {
+    const path = location.pathname;
+    if (path === '/admissions/requirements') return 'admissions.requirements';
+    if (path === '/admissions/programs') return 'admissions.programs';
+    if (path === '/admissions/scholarships') return 'admissions.scholarships';
+    if (path === '/admissions/apply') return 'admissions.apply';
     return '';
   };
 
@@ -40,11 +54,22 @@ const MainLayout: React.FC = () => {
       case 'admissions':
         navigate('/admissions');
         break;
+      case 'admissions.requirements':
+        navigate('/admissions/requirements');
+        break;
+      case 'admissions.programs':
+        navigate('/admissions/programs');
+        break;
+      case 'admissions.scholarships':
+        navigate('/admissions/scholarships');
+        break;
+      case 'admissions.apply':
+        navigate('/admissions/apply');
+        break;
       case 'history':
         navigate('/history');
         break;
       case 'careers':
-        // Add navigation for other menu items
         navigate('/careers');
         break;
       case 'opportunities':
@@ -66,7 +91,7 @@ const MainLayout: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('isAdmin');
     navigate('/');
-    window.location.reload(); // Refresh to update UI because it's still local/ will update to dyanmic once code is fully finished with design
+    window.location.reload();
   };
 
   return (
@@ -79,37 +104,42 @@ const MainLayout: React.FC = () => {
           <Menu 
             mode="horizontal" 
             className="main-menu" 
-            selectedKeys={[getSelectedKey()]}
+            selectedKeys={[getSelectedKey(), getSelectedSubKey()]}
             onClick={({ key }) => handleMenuClick(key)}
-            items={[
-              {
-                key: 'home',
-                icon: <HomeOutlined />,
-                label: 'Home'
-              },
-              {
-                key: 'about',
-                label: 'About Us'
-              },
-              {
-                key: 'admissions',
-                label: 'Admissions'
-              },
-              {
-                key: 'history',
-                icon: <HistoryOutlined />,
-                label: 'History'
-              },
-              {
-                key: 'careers',
-                label: 'Careers'
-              },
-              {
-                key: 'opportunities',
-                label: 'Opportunities'
+          >
+            <Menu.Item key="home" icon={<HomeOutlined />}>
+              Home
+            </Menu.Item>
+            <Menu.Item key="about">
+              About Us
+            </Menu.Item>
+            
+            {/* Admissions Dropdown */}
+            <SubMenu 
+              key="admissions" 
+              title={
+                <span className="submenu-title">
+                  Admissions
+                  <DownOutlined className="dropdown-arrow" />
+                </span>
               }
-            ]}
-          />
+            >
+              <Menu.Item key="admissions.requirements">Requirements</Menu.Item>
+              <Menu.Item key="admissions.programs">Programs Offered</Menu.Item>
+              <Menu.Item key="admissions.scholarships">Scholarships</Menu.Item>
+              <Menu.Item key="admissions.apply">Apply Now</Menu.Item>
+            </SubMenu>
+            
+            <Menu.Item key="history" icon={<HistoryOutlined />}>
+              History
+            </Menu.Item>
+            <Menu.Item key="careers">
+              Careers
+            </Menu.Item>
+            <Menu.Item key="opportunities">
+              Opportunities
+            </Menu.Item>
+          </Menu>
           <div className="admin-section">
             {isAdmin ? (
               <div className="admin-controls">
