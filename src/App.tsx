@@ -9,6 +9,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 import AdmissionRequirements from './pages/AdmissionRequirements';
+import AdmissionScholarship from './pages/AdmissionScholarships';
 
 // Protected Route
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -32,6 +33,7 @@ function App() {
           
           {/* Admissions Routes */}
           <Route path="admission-requirements" element={<AdmissionRequirements />} />
+          <Route path="admission-scholarship" element={<AdmissionScholarship />} />
           
           <Route path="history" element={<History />} />
 

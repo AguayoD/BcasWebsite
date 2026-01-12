@@ -37,7 +37,7 @@ const MainLayout: React.FC = () => {
     const path = location.pathname;
     if (path === '/admission-requirements') return 'admissions.requirements';
     if (path === '/admissions/programs') return 'admissions.programs';
-    if (path === '/admissions/scholarships') return 'admissions.scholarships';
+    if (path === '/admission-scholarship') return 'admissions.scholarships';
     if (path === '/admissions/apply') return 'admissions.apply';
     return '';
   };
@@ -60,7 +60,7 @@ const MainLayout: React.FC = () => {
         navigate('/admissions/programs');
         break;
       case 'admissions.scholarships':
-        navigate('/admissions/scholarships');
+        navigate('/admission-scholarship');
         break;
       case 'admissions.apply':
         navigate('/admissions/apply');
